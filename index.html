@@ -29,8 +29,7 @@
 			embeddedservice_bootstrap.settings.language = 'pt_BR'; // For example, enter 'en' or 'en-US'
 
 			window.addEventListener("onEmbeddedMessagingReady", () => {
-				console.log("entrei");
-				embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({"CNPJ" : "00146889000110"});
+				embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({"emailLogin" : "teste@teste.com", "CNPJ" : "00146889000110", "sessionId" : "0001-0002", "nome" : "Luiz Jivonaldo Felipe"});
 			});
 
 			embeddedservice_bootstrap.init(
