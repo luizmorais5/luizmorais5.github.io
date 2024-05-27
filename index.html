@@ -23,7 +23,7 @@
     <h1>Teste BOT</h1>
   </div>
 
-<script type='text/javascript'>
+/* <script type='text/javascript'>
 	function initEmbeddedMessaging() {
 		try {
 			embeddedservice_bootstrap.settings.language = 'pt_BR'; // For example, enter 'en' or 'en-US'
@@ -45,7 +45,33 @@
 		}
 	};
 </script>
-<script type='text/javascript' src='https://grupovr--bdcamila01.sandbox.my.site.com/ESWEmpregador1709832818713/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+<script type='text/javascript' src='https://grupovr--bdcamila01.sandbox.my.site.com/ESWEmpregador1709832818713/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script> */
+
+
+<script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'pt_BR'; // For example, enter 'en' or 'en-US'
+
+			window.addEventListener("onEmbeddedMessagingReady", () => {
+				embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({"EmailLogin" : "teste@teste.com", "CNPJ" : "00146889000110", "SessionId" : "0001-0002", "Nome" : "Luiz Jivonaldo Felipe"});
+			});
+
+			embeddedservice_bootstrap.init(
+				'00DDw000005XbUx',
+				'Empregador',
+				'https://grupovr--hml.sandbox.my.site.com/ESWEmpregador1713468075678',
+				{
+					scrt2URL: 'https://grupovr--hml.sandbox.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
+</script>
+<script type='text/javascript' src='https://grupovr--hml.sandbox.my.site.com/ESWEmpregador1713468075678/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+	
 </body>
 
 </html>
