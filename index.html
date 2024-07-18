@@ -28,6 +28,10 @@
 		try {
 			embeddedservice_bootstrap.settings.language = 'pt_BR'; // For example, enter 'en' or 'en-US'
 
+			window.addEventListener("onEmbeddedMessagingReady", () => {
+				embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({"EmailLogin" : "teste@teste.com", "CNPJ" : "00146889000110", "SessionId" : "0001-0002", "Nome" : "Luiz Jivonaldo Felipe"});
+			});
+
 			embeddedservice_bootstrap.init(
 				'00DDw000005XbUx',
 				'ChatBotEC',
