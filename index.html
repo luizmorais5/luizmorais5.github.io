@@ -21,8 +21,10 @@
 
   <div class="center_div">
     <h1>Teste BOT</h1>
-    <!-- Adiciona o botão aqui -->
+    <!-- Adiciona os botões aqui -->
     <button onclick="clearUserSession()">Clear Session</button>
+    <button onclick="setPrechatFields1()">Set Prechat Fields 1</button>
+    <button onclick="setPrechatFields2()">Set Prechat Fields 2</button>
   </div>
 
   <script type='text/javascript'>
@@ -31,11 +33,12 @@
         embeddedservice_bootstrap.settings.language = 'pt_BR'; // For example, enter 'en' or 'en-US'
 
         window.addEventListener("onEmbeddedMessagingReady", () => {
+          // Definindo valores iniciais para campos de pré-chat
           embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
             "EmailLogin": "teste@teste.com",
             "CNPJ": "00146889000110",
             "SessionId": "0001-0002",
-            "Nome": "Luiz Jivonaldo Felipe"
+            "Nome": "Luiz"
           });
         });
 
@@ -58,6 +61,36 @@
         console.log('Session cleared successfully.');
       } catch (err) {
         console.error('Error clearing session: ', err);
+      }
+    }
+
+    // Define a função para definir os campos de pré-chat (conjunto 1)
+    function setPrechatFields1() {
+      try {
+        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+          "EmailLogin": "example1@test.com",
+          "CNPJ": "00146889000110",
+          "SessionId": "1001-1002",
+          "Nome": "Jivonaldo"
+        });
+        console.log('Prechat fields set 1 applied.');
+      } catch (err) {
+        console.error('Error setting prechat fields 1: ', err);
+      }
+    }
+
+    // Define a função para definir os campos de pré-chat (conjunto 2)
+    function setPrechatFields2() {
+      try {
+        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+          "EmailLogin": "example2@test.com",
+          "CNPJ": "00146889000110",
+          "SessionId": "2001-2002",
+          "Nome": "Felipe"
+        });
+        console.log('Prechat fields set 2 applied.');
+      } catch (err) {
+        console.error('Error setting prechat fields 2: ', err);
       }
     }
   </script>
