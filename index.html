@@ -21,10 +21,13 @@
 
   <div class="center_div">
     <h1>Teste BOT</h1>
-    <!-- Adiciona os botões aqui -->
-    <button onclick="clearUserSession()">Clear Session</button>
-    <button onclick="setPrechatFields1()">Set Prechat Fields 1</button>
-    <button onclick="setPrechatFields2()">Set Prechat Fields 2</button>
+    <!-- Adiciona o picklist e o botão aqui -->
+    <label for="prechatSelect">Escolha o conjunto de Prechat Fields:</label>
+    <select id="prechatSelect">
+      <option value="set1">Jivonaldo</option>
+      <option value="set2">Felipe</option>
+    </select>
+    <button onclick="updatePrechatFields()">Atualizar Prechat Fields</button>
   </div>
 
   <script type='text/javascript'>
@@ -64,33 +67,35 @@
       }
     }
 
-    // Define a função para definir os campos de pré-chat (conjunto 1)
-    function setPrechatFields1() {
+    // Define a função para atualizar os campos de pré-chat com base na seleção
+    function updatePrechatFields() {
       try {
-        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-          "EmailLogin": "example1@test.com",
-          "CNPJ": "00146889000110",
-          "SessionId": "1001-1002",
-          "Nome": "Jivonaldo"
-        });
-        console.log('Prechat fields set 1 applied.');
-      } catch (err) {
-        console.error('Error setting prechat fields 1: ', err);
-      }
-    }
 
-    // Define a função para definir os campos de pré-chat (conjunto 2)
-    function setPrechatFields2() {
-      try {
-        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-          "EmailLogin": "example2@test.com",
-          "CNPJ": "00146889000110",
-          "SessionId": "2001-2002",
-          "Nome": "Felipe"
-        });
-        console.log('Prechat fields set 2 applied.');
+        clearUserSession()
+        
+        var selectedValue = document.getElementById("prechatSelect").value;
+        var prechatFields;
+
+        if (selectedValue === "set1") {
+          prechatFields = {
+            "EmailLogin": "example1@test.com",
+            "CNPJ": "12345678000111",
+            "SessionId": "1001-1002",
+            "Nome": "Jivonaldo"
+          };
+        } else if (selectedValue === "set2") {
+          prechatFields = {
+            "EmailLogin": "example2@test.com",
+            "CNPJ": "98765432000122",
+            "SessionId": "2001-2002",
+            "Nome": "Felipe"
+          };
+        }
+
+        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields(prechatFields);
+        console.log('Prechat fields updated successfully.');
       } catch (err) {
-        console.error('Error setting prechat fields 2: ', err);
+        console.error('Error updating prechat fields: ', err);
       }
     }
   </script>
