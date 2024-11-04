@@ -6,33 +6,71 @@
     body {
       margin-left: 200px;
       background: #5d9ab2 url("img_tree.png") no-repeat top left;
+      font-family: Arial, sans-serif;
     }
 
     .center_div {
-      margin-left: auto;
-      margin-right: auto;
+      max-width: 400px;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      margin: auto;
       text-align: left;
     }
 
+    h1 {
+      text-align: center;
+      color: #333;
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+
     form {
-      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     label {
-      display: block;
-      margin: 5px 0 2px;
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 2px;
     }
 
     input[type="text"] {
       width: 100%;
-      padding: 5px;
-      margin-bottom: 10px;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 0.9em;
+      box-sizing: border-box;
     }
 
     button {
       padding: 10px 15px;
+      background-color: #5d9ab2;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1em;
       margin-top: 10px;
+      transition: background-color 0.3s ease;
     }
+
+    button:hover {
+      background-color: #4c8394;
+    }
+
+    .center_div button.clear-session {
+      background-color: #e74c3c;
+    }
+
+    .center_div button.clear-session:hover {
+      background-color: #c0392b;
+    }
+
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 </head>
@@ -45,34 +83,34 @@
     <!-- Formulário para coletar dados de pré-chat -->
     <form id="prechatForm">
       <label for="cnpj">CNPJ:</label>
-      <input type="text" id="cnpj" name="cnpj">
+      <input type="text" id="cnpj" name="cnpj" maxlength="14" placeholder="Digite o CNPJ">
 
       <label for="cpf">CPF:</label>
-      <input type="text" id="cpf" name="cpf">
+      <input type="text" id="cpf" name="cpf" maxlength="11" placeholder="Digite o CPF">
 
       <label for="emailLogin">Email:</label>
-      <input type="text" id="emailLogin" name="emailLogin">
+      <input type="text" id="emailLogin" name="emailLogin" maxlength="50" placeholder="Digite o Email">
 
       <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome">
+      <input type="text" id="nome" name="nome" maxlength="50" placeholder="Digite o Nome">
 
       <label for="nomeFantasia">Nome Fantasia:</label>
-      <input type="text" id="nomeFantasia" name="nomeFantasia">
+      <input type="text" id="nomeFantasia" name="nomeFantasia" maxlength="50" placeholder="Digite o Nome Fantasia">
 
       <label for="razaoSocial">Razão Social:</label>
-      <input type="text" id="razaoSocial" name="razaoSocial">
+      <input type="text" id="razaoSocial" name="razaoSocial" maxlength="50" placeholder="Digite a Razão Social">
 
       <label for="sessionId">Session ID:</label>
-      <input type="text" id="sessionId" name="sessionId">
+      <input type="text" id="sessionId" name="sessionId" maxlength="20" placeholder="Digite o Session ID">
 
       <label for="telefone">Telefone:</label>
-      <input type="text" id="telefone" name="telefone">
+      <input type="text" id="telefone" name="telefone" maxlength="15" placeholder="Digite o Telefone">
 
       <button type="button" onclick="setPrechatFields()">Enviar</button>
     </form>
 
     <!-- Botão para limpar a sessão -->
-    <button onclick="clearUserSession()">Clear Session</button>
+    <button class="clear-session" onclick="clearUserSession()">Limpar Sessão</button>
   </div>
 
   <script type='text/javascript'>
