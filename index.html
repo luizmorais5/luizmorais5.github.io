@@ -26,27 +26,6 @@
       margin-bottom: 20px;
     }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    label {
-      font-size: 0.9em;
-      color: #555;
-      margin-bottom: 2px;
-    }
-
-    input[type="text"] {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 0.9em;
-      box-sizing: border-box;
-    }
-
     button {
       padding: 10px 15px;
       background-color: #5d9ab2;
@@ -55,7 +34,8 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 1em;
-      margin-top: 10px;
+      margin: 5px 0;
+      width: 100%;
       transition: background-color 0.3s ease;
     }
 
@@ -63,14 +43,13 @@
       background-color: #4c8394;
     }
 
-    .center_div button.clear-session {
+    .clear-session {
       background-color: #e74c3c;
     }
 
-    .center_div button.clear-session:hover {
+    .clear-session:hover {
       background-color: #c0392b;
     }
-
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 </head>
@@ -80,43 +59,29 @@
   <div class="center_div">
     <h1>Teste BOT</h1>
 
-    <!-- Formulário para coletar dados de pré-chat -->
-    <form id="prechatForm">
-      <label for="cnpj">CNPJ:</label>
-      <input type="text" id="cnpj" name="cnpj" maxlength="14" placeholder="Digite o CNPJ">
-
-      <label for="cpf">CPF:</label>
-      <input type="text" id="cpf" name="cpf" maxlength="11" placeholder="Digite o CPF">
-
-      <label for="emailLogin">Email:</label>
-      <input type="text" id="emailLogin" name="emailLogin" maxlength="50" placeholder="Digite o Email">
-
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" maxlength="50" placeholder="Digite o Nome">
-
-      <label for="nomeFantasia">Nome Fantasia:</label>
-      <input type="text" id="nomeFantasia" name="nomeFantasia" maxlength="50" placeholder="Digite o Nome Fantasia">
-
-      <label for="razaoSocial">Razão Social:</label>
-      <input type="text" id="razaoSocial" name="razaoSocial" maxlength="50" placeholder="Digite a Razão Social">
-
-      <label for="sessionId">Session ID:</label>
-      <input type="text" id="sessionId" name="sessionId" maxlength="20" placeholder="Digite o Session ID">
-
-      <label for="telefone">Telefone:</label>
-      <input type="text" id="telefone" name="telefone" maxlength="15" placeholder="Digite o Telefone">
-
-      <button type="button" onclick="setPrechatFields()">Enviar</button>
-    </form>
-
-    <!-- Botão para limpar a sessão -->
-    <button class="clear-session" onclick="clearUserSession()">Limpar Sessão</button>
+    <!-- Botões para definir os campos de pré-chat -->
+    <button onclick="clearUserSession()" class="clear-session">Limpar Sessão</button>
+    <button onclick="setPrechatFields1()">Dados Jivonaldo</button>
+    <button onclick="setPrechatFields2()">Dados Felipe</button>
   </div>
 
   <script type='text/javascript'>
     function initEmbeddedMessaging() {
       try {
         embeddedservice_bootstrap.settings.language = 'pt_BR';
+
+        window.addEventListener("onEmbeddedMessagingReady", () => {
+          embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+            "EmailLogin": "teste@teste.com",
+            "CNPJ": "33391655000197",
+            "SessionId": "0001-0002",
+            "Nome": "Luiz"
+            "CPF": "09876543210",
+            "NomeFantasia": "Empresa Luiz",
+            "RazaoSocial": "Luiz LTDA",
+            "Telefone": "21987654321"
+          });
+        });
 
         embeddedservice_bootstrap.init(
           '00DDw000005XbUx',
@@ -140,32 +105,41 @@
       }
     }
 
-    // Define a função para definir os campos de pré-chat a partir do formulário
-    function setPrechatFields() {
+    // Define a função para definir os campos de pré-chat (conjunto 1)
+    function setPrechatFields1() {
       try {
-        const cnpj = document.getElementById("cnpj").value;
-        const cpf = document.getElementById("cpf").value;
-        const emailLogin = document.getElementById("emailLogin").value;
-        const nome = document.getElementById("nome").value;
-        const nomeFantasia = document.getElementById("nomeFantasia").value;
-        const razaoSocial = document.getElementById("razaoSocial").value;
-        const sessionId = document.getElementById("sessionId").value;
-        const telefone = document.getElementById("telefone").value;
-
         embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-          "CNPJ": cnpj,
-          "CPF": cpf,
-          "EmailLogin": emailLogin,
-          "Nome": nome,
-          "NomeFantasia": nomeFantasia,
-          "RazaoSocial": razaoSocial,
-          "SessionId": sessionId,
-          "Telefone": telefone
+          "EmailLogin": "example1@test.com",
+          "CNPJ": "48917702000160",
+          "SessionId": "1001-1002",
+          "Nome": "Jivonaldo",
+          "CPF": "12345678901",
+          "NomeFantasia": "Empresa Jivonaldo",
+          "RazaoSocial": "Jivonaldo LTDA",
+          "Telefone": "11999998888"
         });
-
-        console.log('Prechat fields set from form.');
+        console.log('Prechat fields set 1 applied.');
       } catch (err) {
-        console.error('Error setting prechat fields from form: ', err);
+        console.error('Error setting prechat fields 1: ', err);
+      }
+    }
+
+    // Define a função para definir os campos de pré-chat (conjunto 2)
+    function setPrechatFields2() {
+      try {
+        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+          "EmailLogin": "example2@test.com",
+          "CNPJ": "44327540000150",
+          "SessionId": "2001-2002",
+          "Nome": "Felipe",
+          "CPF": "09876543210",
+          "NomeFantasia": "Empresa Felipe",
+          "RazaoSocial": "Felipe LTDA",
+          "Telefone": "21987654321"
+        });
+        console.log('Prechat fields set 2 applied.');
+      } catch (err) {
+        console.error('Error setting prechat fields 2: ', err);
       }
     }
   </script>
