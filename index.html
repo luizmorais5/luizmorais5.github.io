@@ -13,6 +13,26 @@
       margin-right: auto;
       text-align: left;
     }
+
+    form {
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 5px 0 2px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin-top: 10px;
+    }
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 </head>
@@ -21,31 +41,49 @@
 
   <div class="center_div">
     <h1>Teste BOT</h1>
-    <!-- Adiciona os botões aqui -->
+
+    <!-- Formulário para coletar dados de pré-chat -->
+    <form id="prechatForm">
+      <label for="cnpj">CNPJ:</label>
+      <input type="text" id="cnpj" name="cnpj">
+
+      <label for="cpf">CPF:</label>
+      <input type="text" id="cpf" name="cpf">
+
+      <label for="emailLogin">Email:</label>
+      <input type="text" id="emailLogin" name="emailLogin">
+
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome">
+
+      <label for="nomeFantasia">Nome Fantasia:</label>
+      <input type="text" id="nomeFantasia" name="nomeFantasia">
+
+      <label for="razaoSocial">Razão Social:</label>
+      <input type="text" id="razaoSocial" name="razaoSocial">
+
+      <label for="sessionId">Session ID:</label>
+      <input type="text" id="sessionId" name="sessionId">
+
+      <label for="telefone">Telefone:</label>
+      <input type="text" id="telefone" name="telefone">
+
+      <button type="button" onclick="setPrechatFields()">Enviar</button>
+    </form>
+
+    <!-- Botão para limpar a sessão -->
     <button onclick="clearUserSession()">Clear Session</button>
-    <button onclick="setPrechatFields1()">Dados Jivonaldo</button>
-    <button onclick="setPrechatFields2()">Dados Felipe</button>
   </div>
 
   <script type='text/javascript'>
     function initEmbeddedMessaging() {
       try {
-        embeddedservice_bootstrap.settings.language = 'pt_BR'; // For example, enter 'en' or 'en-US'
-
-        window.addEventListener("onEmbeddedMessagingReady", () => {
-          // Definindo valores iniciais para campos de pré-chat
-          embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-            "EmailLogin": "teste@teste.com",
-            "CNPJ": "00146889000110",
-            "SessionId": "0001-0002",
-            "Nome": "Luiz"
-          });
-        });
+        embeddedservice_bootstrap.settings.language = 'pt_BR';
 
         embeddedservice_bootstrap.init(
           '00DDw000005XbUx',
-          'Empregador',
-          'https://grupovr--hml.sandbox.my.site.com/ESWEmpregador1713468075678', {
+          'VR_Gente',
+          'https://grupovr--hml.sandbox.my.site.com/ESWVRGente1729865041616', {
             scrt2URL: 'https://grupovr--hml.sandbox.my.salesforce-scrt.com'
           }
         );
@@ -64,37 +102,36 @@
       }
     }
 
-    // Define a função para definir os campos de pré-chat (conjunto 1)
-    function setPrechatFields1() {
+    // Define a função para definir os campos de pré-chat a partir do formulário
+    function setPrechatFields() {
       try {
-        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-          "EmailLogin": "example1@test.com",
-          "CNPJ": "00146889000110",
-          "SessionId": "1001-1002",
-          "Nome": "Jivonaldo"
-        });
-        console.log('Prechat fields set 1 applied.');
-      } catch (err) {
-        console.error('Error setting prechat fields 1: ', err);
-      }
-    }
+        const cnpj = document.getElementById("cnpj").value;
+        const cpf = document.getElementById("cpf").value;
+        const emailLogin = document.getElementById("emailLogin").value;
+        const nome = document.getElementById("nome").value;
+        const nomeFantasia = document.getElementById("nomeFantasia").value;
+        const razaoSocial = document.getElementById("razaoSocial").value;
+        const sessionId = document.getElementById("sessionId").value;
+        const telefone = document.getElementById("telefone").value;
 
-    // Define a função para definir os campos de pré-chat (conjunto 2)
-    function setPrechatFields2() {
-      try {
         embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-          "EmailLogin": "example2@test.com",
-          "CNPJ": "00146889000110",
-          "SessionId": "2001-2002",
-          "Nome": "Felipe"
+          "CNPJ": cnpj,
+          "CPF": cpf,
+          "EmailLogin": emailLogin,
+          "Nome": nome,
+          "NomeFantasia": nomeFantasia,
+          "RazaoSocial": razaoSocial,
+          "SessionId": sessionId,
+          "Telefone": telefone
         });
-        console.log('Prechat fields set 2 applied.');
+
+        console.log('Prechat fields set from form.');
       } catch (err) {
-        console.error('Error setting prechat fields 2: ', err);
+        console.error('Error setting prechat fields from form: ', err);
       }
     }
   </script>
-  <script type='text/javascript' src='https://grupovr--hml.sandbox.my.site.com/ESWChatBotEC1718050660678/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+  <script type='text/javascript' src='https://grupovr--hml.sandbox.my.site.com/ESWVRGente1729865041616/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
 </body>
 
